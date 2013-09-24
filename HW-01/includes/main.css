@@ -1,0 +1,88 @@
+body {
+  background-color: #CCA;
+  font-family: verdana,arial,sans-serif;
+  font-size:15px;
+}
+#container {
+  width: 1024px;
+  height: 100%;
+  text-align: center;
+  margin: 0px auto;
+}
+
+
+.buttonSmall {
+  Width: 90px;
+  Height: 37px;
+}
+
+
+#header {
+  /*border:2px solid red;*/
+  width:1024px;
+  height:70px;
+  margin:10px 0 10px 150px;
+  text-align: center;
+  
+}
+
+
+#center {
+	/*border:2px solid blue;*/
+	width:600px;
+	margin:10px 0 10px 320px;
+	min-height:500px;
+	text-align: left;
+	white-space: normal; 	
+	position: left;
+        display: block;
+
+}
+
+
+
+
+#leftMenu {
+  /*border:2px solid green;*/
+  width:160px;
+  float:left;
+  margin:0px 0 0px 160px;
+  display: block;
+  text-align: left;
+}
+
+table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+
+#labels{
+  /*border:2px solid red;*/
+  width:140px;
+  height:20px;
+  margin:5px 0px 5px 0px;
+  padding: 5px;
+  text-align:left;
+}
+
+select {
+  font-size: 17px;
+}
