@@ -9,6 +9,7 @@ if($_POST){
     $name = str_replace('!', '', $name);
     $price=trim($_POST['price']);
     $price=  str_replace('!', '', $price);
+	$price = str_replace(',', '.', $price);
     $price = (float)$price;
     $selectedGroup=$_POST['group'];
     $error=false;
@@ -41,6 +42,7 @@ if($_POST){
                 {
                      $alert = 'Записа е редактиран успешно!';
                      printAlert($alert);
+					 header("Location: index.php"); 
                 }    
             }
        
