@@ -1,33 +1,53 @@
 <?php
+    session_start();
     $pageTitle='Files';
     include 'includes/header.php';
-    session_start();
-    if (!isset( $_POST["username"], $_POST["password"]) || empty( $_POST["username"]) || empty( $_POST["password"]))
+    if(checkSession()) 
         {
-            header("Location: index.php");
-        }
+            $username=$_SESSION["username"];
+            $dir = './users/' . $username;
+        } 
     else
-        {
-           $res = file('users.txt');
-           foreach ($res as $line_num => $value)
+        {   
+            $postKeys=array("username", "password");
+            if(!hasData($postKeys))
                 {
-                        $columns =  explode('!', $value);
-                        if ($columns[0] == $_POST["username"] && $columns[1] == $_POST["password"])
-                            {
-                                SuccessLogin($_POST["username"]);
-                            }
+                        navigate("index.php");
+                        exit;
                 }
+                
+            if($user = checkLogin($_POST["username"], $_POST["password"]))
+                    {
+                            SuccessLogin($user);
+                    }
+
+            else 
+                    {                           
+                            printAlert("Wrong username or password");
+                    }   
+           
         }
-var_dump($_POST);
+
 ?>
 
-<div id="header">
-    <h2>Uploaded files are:</h2>
-</div>
-
 <div id="container"> 
+    
+  
+     <div id="header">   
+        <h2>Списък на файловете:</h2>
+     </div>
+     <div id="leftMenu">
+         <a href="logout.php"><input type="button" class="btn" value="Logout!" /></a>
+     </div>
+     <div id="rightMenu">
+         <a href="upload.php"><input type="button" class="btn" value="Upload New File" /></a>
+     </div>
+        <div id="page">
+                <?php 
+                    put_contents_in_table(listFilesInDirectory($dir), $dir);
+                ?>
+        </div> 
    
-	
  
 </div>
 

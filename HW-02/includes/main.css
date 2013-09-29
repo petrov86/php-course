@@ -3,6 +3,7 @@ body {
   font-family: verdana,arial,sans-serif;
   font-size:15px;
 }
+
 #container {
   width: 1024px;
   height: 100%;
@@ -11,85 +12,46 @@ body {
 }
 
 
-.buttonSmall {
-  width: 90px;
-  height: 37px;
-  text-align:center;
-}
-
-.buttonBig {
-  Width: 140px;
-  Height: 42px;
-  position: left;
-  text-align:center;
-}
-
 #header {
   /*border:2px solid red;*/
   width:1024px;
   height:70px;
-  margin:10px 0 10px 150px;
+  margin:10px 0 10px 0;
   text-align: center;
   position: relative;
   
 }
 
-
-#center {
-	/*border:2px solid blue;*/
-	width:600px;
-	margin:10px 0 10px 200px;
-	min-height:500px;
-	text-align: center;
-	white-space: normal; 	
-	position: left;
-        display: block;
-
+#rightMenu {
+  /*border:2px solid black;*/
+  width:160px;
+  float:right;
+  margin:10px 0px 10px 830px;
+  padding: 10px;
+  position: absolute;
+  
+  
 }
 
-
+#page {
+    /*border:2px solid blue;*/
+    width:600px;
+    margin:10px 0 10px 200px;
+    min-height:500px;
+    text-align: center;
+    white-space: normal; 	
+    position: left;
+    display: block;
+}
 
 
 #leftMenu {
   /*border:2px solid green;*/
   width:180px;
   float:left;
-  margin:0px 0 0px 10px;
+  margin:0px 0 0px 0;
   display: block;
   text-align: left;
-}
-
-table.gridtable {
-	font-family: verdana,arial,sans-serif;
-	font-size:11px;
-	color:#333333;
-	border-width: 1px;
-	border-color: #666666;
-	border-collapse: collapse;
-}
-table.gridtable th {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #666666;
-	background-color: #dedede;
-}
-table.gridtable td {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #666666;
-	background-color: #ffffff;
-}
-
-input{
-  /*border:2px solid red;*/
-  margin: 0 0 10px 25px;
-  width:140px;
-  height:20px;
-  padding: 5px;
-  text-align:left;
-  position: center;
 }
 
 
