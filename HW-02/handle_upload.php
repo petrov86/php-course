@@ -1,44 +1,56 @@
 <?php
 session_start();
 require_once "includes/functions.php";
-$randomst=md5(crypt("devil"));
 $username=$_SESSION["username"];
+$postMax = ini_get('post_max_size'); 
+$postMax = (int)$postMax*1024*1024;
 
-$d=date("Y-m-d H:i:s");
 
-if (isset($_FILES))
-{       
-        $filesKeys=array($_FILES["userfile"]["userfile"], $_FILES["userfile"]["name"], $_FILES["userfile"]["type"], $_FILES["userfile"]["size"], $_FILES["userfile"]["tmp_name"]);
-        if(!hasData($filesKeys)) navigate ("upload.php");
-        $uploaddir = './users/' . $username;
-        if (!file_exists($uploaddir)) mkdir($uploaddir, 0700);
-        $uploadfile = $uploaddir ."/".$username.$randomst.".".getFileExtension($_FILES['userfile']['name']);
-        
-        if (file_exists($uploadfile)) 
-                {
-                        $message="The file already exists!!!";
-                        printAlert($message, "files.php");
-                        exit;
+if ($_SERVER["CONTENT_LENGTH"] > $postMax) 
+{
+    $message = "File is bigger than " .$postMax;
+	echo $_SERVER["CONTENT_LENGTH"] ."--->".$postMax;
+	echo "<br/>";
+    printAlert($message, "upload.php");
+}
+ 
 
-                } 
-        elseif (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) 
-                {
-                        $message="File is valid, and was successfully uploaded.";
-                        printAlert($message, "files.php");
-                        exit;
-                } 
-        else 
-                {
-                        $message = "Possible file upload attack!\n";
-                        printAlert($message, "files.php");
-                        exit;
-                }
+if ($_FILES["userfile"]["error"] == 0)
+{			
+			if (strlen($_FILES["userfile"]["name"])== 0)  navigate("upload.php");
+			$uploaddir = './users/' . $username;
+			if (!file_exists($uploaddir)) mkdir($uploaddir, 0700);
+			$fileName = $_FILES["userfile"]["name"];
+			$uploadfile = $uploaddir ."/".$fileName;
+
+			if (file_exists($uploadfile)) 
+					{
+							$message="The file already exists!!!";								
+							printAlert($message, "files.php");
+							exit;
+
+					} 
+			elseif (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) 
+					{
+							$message="File is valid, and was successfully uploaded.";
+							printAlert($message, "files.php");
+							exit;
+					} 
+			else 
+					{
+							$message = "Possible file upload attack!\n";
+							printAlert($message, "files.php");
+							exit;
+					}
+
 }
 
-else 
-    {
-        $message = "Select a file first!";
-        printAlert($message, "upload.php");
-    
-    }
+else
+{
+		$message = file_upload_error_message($_FILES['userfile']['error']); 
+		printAlert($message, "upload.php");
+		exit;
+}
+
+
 ?>

@@ -4,16 +4,14 @@
     session_start();
     if (checkSession()) navigate("files.php");
 ?>
-	<div id="container">
-                <div id="header">
-                    <h2>Create a New Account </h2>
+  
+        <div class="row">
+                <br/>
+                <div class="span3 offset3">
+                 <a href="index.php"><input type="button" class="btn" value="Back" /></a>
                 </div>
-                 <div id="leftMenu">
-                        <a href="index.php"><input type="button" class="btn" value="Back" /></a>
-                </div>
-		<div id="page">
-                   
-		
+                <div class="span8 offset7">
+                <h2>Create a New Account</h2>           
 		<form class="form-signin" action="" method="POST">
 		<label for="username">Username:</label>
 		<input class="input-large" id="username" name="username" type="text" required="required" />
@@ -44,9 +42,21 @@ if (isset($_POST["submit"]))
                                 navigate("register.php");
                                 exit;
                         }
-
+                        
+                elseif(mb_strlen($username) < 4)
+                        {
+                                $message = 'Името трябва да е с дължина поне 4 символа';
+                                printAlert($message, "");     
+                        } 
+                        
                 elseif($password==$pass2)
                 {	
+                    
+                        if (mb_strlen($password) < 4)
+                            {
+                                $message = 'Паролата трябва да е с поне 4 символа';
+                                printAlert($message, "");  
+                            }
                         $message = 'Вие се регистрирахте успешно';
                         $username = trim($username);
                         $username = str_replace('!', '', $username);
@@ -57,14 +67,14 @@ if (isset($_POST["submit"]))
                         else 
                             {
                                 $message = "Има проблем с регистрацията ви! Моля опитайте отново!";
-                                printAlert ($message);
+                                printAlert ($message, "register.php");
                             }
                 }
 
                 else 
                 {	
                         $message="Invalid data";
-                        $error=  printAlert($message);
+                        $error=  printAlert($message, "register.php");
                 }
         }
 ?>

@@ -44,7 +44,9 @@
      </div>
         <div id="page">
                 <?php 
-                    put_contents_in_table(listFilesInDirectory($dir), $dir);
+                        $files = listFilesInDirectory($dir);
+                        $files = removeBadFiles($files);
+                        put_contents_in_table($files, $dir);
                 ?>
         </div> 
    

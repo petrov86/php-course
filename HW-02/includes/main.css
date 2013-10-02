@@ -11,6 +11,10 @@ body {
   margin: 0px auto;
 }
 
+.leftpostion{
+ text-align: left;   
+    
+}
 
 #header {
   /*border:2px solid red;*/
@@ -38,7 +42,6 @@ body {
     width:600px;
     margin:10px 0 10px 200px;
     min-height:500px;
-    text-align: center;
     white-space: normal; 	
     position: left;
     display: block;

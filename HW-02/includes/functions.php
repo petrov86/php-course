@@ -15,6 +15,18 @@ function hasData($arrayOfKeys) {
                 return true;
 }  
 
+function hasValidFile($arrayOfKeys) {
+        foreach($arrayOfKeys as $currentKey)
+                {
+                        if (!isset($_FILES["filename"][$currentKey]))
+                                {
+                                        return false;
+                                }
+                }
+                return true;
+}  
+
+
 function checkLogin($user, $pass) 
 	{	
 		//filter input data
@@ -24,7 +36,7 @@ function checkLogin($user, $pass)
                 foreach ($res as $line_num => $value)
                      {
                          $row[$line_num] =  explode('!', $value);
-                         echo $row[$line_num][0]. " =>". $row[$line_num][1];
+                         //echo $row[$line_num][0]. " =>". $row[$line_num][1];
                          if ($row[$line_num][0] == $user && $row[$line_num][1] == $pass)
                              {
                                    return $user; 
@@ -34,21 +46,12 @@ function checkLogin($user, $pass)
                 
 	}
         
-function printAlert($alert, $where=false){
-    if ($where)
-        {
+function printAlert($alert, $where="index.php"){
+        {   
             echo "<script>
-              alert('" .$alert. "');
-              window.location.href='".$where."';
+            alert('" .$alert. "');
+            window.location.href='".$where."';
             </script>"; 
-        }
-    
-    else
-        {
-             echo "<script>
-              alert('" .$alert. "');
-            </script>"; 
-        
         }
      
 }
@@ -82,16 +85,21 @@ function getFileExtension($filename)
 		}
                 
 function listFilesInDirectory($dir)
-        {
-            $files = scandir($dir);
-            return $files;
+        {	
+			if (!file_exists($dir)) mkdir($dir, 0700);
+            $files = scandir($dir, 1);
+            return $files; // return array 
         }                
 
-        
+function removeBadFiles ($files){
+		$bad = array(".", "..");
+		$files = array_diff($files, $bad);
+		return $files; 
+}
+       
         
 function put_contents_in_table($filesArray, $dir)
         {
-            $totalSum = 0.00;
             echo "<table class='table table-hover' >
                 <tr>
                     <th></th>
@@ -102,7 +110,7 @@ function put_contents_in_table($filesArray, $dir)
                         {	
 				$EmptyMessage = "Нямате качени файлове!!!";
 				$EmptyRow = '<tr>
-                                                <td colspan="3">'.$EmptyMessage.'</td>
+                                                <td colspan="3" >'.$EmptyMessage.'</td>
                                             </tr>';
                                 echo  $EmptyRow;
 			}
@@ -115,11 +123,37 @@ function put_contents_in_table($filesArray, $dir)
                                             $fileSize = filesize($filePath) . ' bytes';
                                             echo '<tr>
                                                  <td>'.++$file_num.'</td>
-                                                 <td><a href="'.$filePath.'">'.$file.'</a></td> 
+                                                 <td><a download href="'.$filePath.'">'.$file.'</a></td> 
                                                  <td>'.$fileSize.'</td>
                                                  </tr>';
                                         }        
                         }
                 echo "</table>";
         }
+        
+        
+function file_upload_error_message($error_code) 
+{
+    switch ($error_code)
+    { 
+        case 0:
+            return 'There is no error, the file uploaded with success.';
+        case 1: 
+            return 'The uploaded file exceeds the upload_max_filesize directive in php.ini'; 
+        case 2: 
+            return 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form'; 
+        case 3: 
+            return 'The uploaded file was only partially uploaded'; 
+        case 4: 
+            return 'No file was uploaded'; 
+        case 6: 
+            return 'Missing a temporary folder'; 
+        case 7: 
+            return 'Failed to write file to disk'; 
+        case 8: 
+            return 'File upload stopped by extension'; 
+        default: 
+            return 'Unknown upload error';     
+    } 
+} 
 ?>

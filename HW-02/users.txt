@@ -1,2 +1,5 @@
 user!qwerty!
 admin!1234!
+Telerik!telerik!
+user2!qwerty!
+student!student!

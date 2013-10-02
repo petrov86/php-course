@@ -16,7 +16,7 @@ if (!checkSession()) navigate("index.php");
         <div id="page">
                
                      <form enctype="multipart/form-data" action="handle_upload.php" method="POST">	
-                                 <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />  <br/>                                        
+                                 <input type="hidden" name="MAX_FILE_SIZE" value="16000000" />  <br/>                                        
                                  <input name="userfile" type="file" value="Choose a file" /> <br/>  
                                  <div><br/>
                                  <input class="btn" type="submit" value="Потвърдете" />
@@ -28,4 +28,7 @@ if (!checkSession()) navigate("index.php");
 
 <?php
 include 'includes/footer.php';
+
+
+
 ?>

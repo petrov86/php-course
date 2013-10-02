@@ -16,14 +16,14 @@ if (checkSession()) navigate("files.php");
         <form action="files.php" method="post">	
 		<p>
                     <label  for="username">Username:</label>
-                    <input  type="text" name="username" type="text" />
+                    <input  type="text" name="username" type="text" required="required" />
                 </p>
 
                 <p>
                     <label  for="password">Password:</label>
-                    <input type="password" name="password" type="password" />
+                    <input type="password" name="password" type="password" required="required"/>
                 </p>
-		<input class="btn-small" type="submit" value="Login!" />
+		<input class="btn" type="submit" value="Login!" />
 		</form>
 	</br>
 		
