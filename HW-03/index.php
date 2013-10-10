@@ -38,7 +38,10 @@ if(isset($_POST["username"], $_POST["password"]))
         
             $username=trim($_POST["username"]);
             $password=trim($_POST["password"]);
-            
+            $username = mysqli_real_escape_string($link, $_POST["username"]);
+		    $password = mysqli_real_escape_string($link, $_POST["password"]);
+
+			
             $sql="SELECT id, username, password FROM users WHERE username='$username' AND password='$password' LIMIT 1";
             $result = mysqli_query($link, $sql);
             if (!$result)

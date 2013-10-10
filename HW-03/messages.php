@@ -20,7 +20,7 @@ if (!checkSession()) navigate("index.php");
                         FROM messages JOIN users ON messages.user_id = users.id 
 						ORDER BY messages.message_id DESC";
 		$res =  mysqli_query($link, $sql);
-                if (!$res) die( mysqli_error($link));
+		if (!$res) die( mysqli_error($link));
 		while($row =  mysqli_fetch_assoc($res))
 			{
 				echo "<div>";

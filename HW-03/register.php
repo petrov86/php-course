@@ -65,7 +65,7 @@ if (isset($_POST["submit"]))
                                 exit;
                             }
                         
-                        $getRowsBefore = mysqli_query($link, "SELECT id FROM users") or die(mysql_error());
+                        $getRowsBefore = mysqli_query($link, "SELECT id FROM users");
                         $rowsBefore = mysqli_num_rows($getRowsBefore);
                         
                         $sql = "INSERT INTO users (id ,username, password)
@@ -84,7 +84,7 @@ if (isset($_POST["submit"]))
                         else 
                             {   
                                 
-                                $getRowsAfter = mysqli_query($link, "SELECT id FROM users") or die(mysql_error());
+                                $getRowsAfter = mysqli_query($link, "SELECT id FROM users");
                                 $rowsAfter = mysqli_num_rows($getRowsAfter);
                                 if ($rowsAfter == $rowsBefore) 
                                     { 

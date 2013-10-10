@@ -11,10 +11,8 @@
 	$userId = $_SESSION["userId"];
 	if(isset($_POST["message"])) 
             {
-		$message = mysql_real_escape_string($_POST["message"]);
-		$message = htmlspecialchars($message);
-                $summary = mysql_real_escape_string($_POST["summary"]);
-		$summary = htmlspecialchars($summary);
+		$message = mysqli_real_escape_string($link, $_POST["message"]);
+		$summary = mysqli_real_escape_string($link, $_POST["summary"]);
 		$messageTime = date( 'Y-m-d H:i:s');
 		
 		$sql = "INSERT INTO messages(message_id, summary, message, creation_date, user_id) VALUES('', '$summary', '$message', '$messageTime', '$userId')";
@@ -51,7 +49,7 @@
                 <a href="logout.php"><input type="button" class="btn" value="Logout!" /></a>
             </div>
             <div class="span3 offset2">
-                <a href="postmessage.php"><input type="button" class="btn" value="Back!" /> </a>
+                <a href="messages.php"><input type="button" class="btn" value="Back!" /> </a>
             </div>
             <div class="span8 offset5">
                   <form method="post" action="">
