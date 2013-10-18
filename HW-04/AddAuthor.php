@@ -39,6 +39,9 @@ include 'includes/header.php';
                     {
                         die( mysqli_error($link));    
                     }
+				$row_count = mysqli_num_rows($result);
+                if(!$row_count) echo "<tr><td>Няма намерени записи</td></tr>";
+				
                 $arr = array();    
                 while ( $row=mysqli_fetch_assoc($result) )
                     {

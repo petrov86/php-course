@@ -25,7 +25,10 @@ include 'includes/header.php';
                                 if (!$result)
                                     {
                                         die( mysqli_error($link));    
-                                    }  
+                                    }
+								$row_count = mysqli_num_rows($result);
+								if(!$row_count) echo "<option disabled>Добавете първо автор</option>";
+										
                                 while ( $row=mysqli_fetch_assoc($result) )
                                     {
                                        echo "<option value='" . $row['author_id'] . "'>" . $row['author_name']. "</option>";
@@ -83,6 +86,7 @@ if (isset($_POST["submit"]))
                                              $message = "Има проблем с добавянето на книгата! Моля опитайте отново!";
                                              printAlert ($message, "AddBook.php");
                                     }
+							
                                 $book_id = mysqli_insert_id($link);        
                                 foreach ($authors as $author_id)
                                     {

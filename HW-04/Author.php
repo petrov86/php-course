@@ -24,17 +24,12 @@ include 'includes/header.php';
             if ($_GET["author_id"])
             {
                 $author_id = $_GET["author_id"];
-                $sql = "SELECT  books.book_id, books.book_title, authors.author_name, authors.author_id FROM books
-                        LEFT JOIN books_authors ON books.book_id = books_authors.book_id
-                        LEFT JOIN authors ON authors.author_id = books_authors.author_id
-                        WHERE books.book_title IN 
-                        (
-                              SELECT books.book_title FROM books 
-                              LEFT JOIN books_authors ON books.book_id = books_authors.book_id 
-                              LEFT JOIN authors ON authors.author_id = books_authors.author_id
-                              WHERE books_authors.author_id = '$author_id' AND authors.author_id='$author_id'
-                        )
-                        ORDER BY  `books`.`book_id` DESC ";
+                $sql = "SELECT * FROM books_authors AS ba
+                        LEFT JOIN books AS b ON b.book_id = ba.book_id
+                        LEFT JOIN books_authors AS bba ON bba.book_id = ba.book_id
+                        LEFT JOIN authors AS a ON a.author_id = bba.author_id
+                        WHERE ba.author_id =  '$author_id'
+                        ORDER BY  `ba`.`book_id` DESC";
                 $result = mysqli_query($link, $sql);
                 
                 if (!$result)
@@ -42,7 +37,7 @@ include 'includes/header.php';
                         die( mysqli_error($link));    
                     }
                 $row_count = mysqli_num_rows($result);
-                if(!$row_count) printAlert("Несъществуващ автор", "index.php");
+                if(!$row_count) echo "<tr><td colspan = '2'>Няма намерени записи от този автор</td></tr>";
                 
                 $arr = array();    
                while ( $row=mysqli_fetch_assoc($result) )
