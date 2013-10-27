@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- БД: `homework-05`
 --
-CREATE DATABASE `homework-05` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE `homework-05` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `homework-05`;
 
 -- --------------------------------------------------------
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `authors` (
   `author_id` int(11) NOT NULL AUTO_INCREMENT,
   `author_name` varchar(250) NOT NULL,
   PRIMARY KEY (`author_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Ссхема на данните от таблица `authors`
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `book_title` varchar(250) NOT NULL,
   PRIMARY KEY (`book_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Ссхема на данните от таблица `books`
@@ -100,14 +100,14 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `comment_time` datetime NOT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `comment_id` (`comment_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Ссхема на данните от таблица `comments`
 --
 
 INSERT INTO `comments` (`comment_id`, `comment`, `book_id`, `user_id`, `comment_time`) VALUES
-(9, 'Супер', 19, 5, '2013-10-27 11:25:57');
+(13, 'super!', 19, 5, '2013-10-27 14:51:09');
 
 -- --------------------------------------------------------
 
