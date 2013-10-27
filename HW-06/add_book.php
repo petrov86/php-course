@@ -1,8 +1,8 @@
 <?php
 include './inc/functions.php';
 
-$authors = getAuthors($db);
-if ($authors === false) {
+$data['authors'] = getAuthors($db);
+if ($data['authors'] === false) {
     echo 'грешка';
     ///TODO        
 }
@@ -52,7 +52,7 @@ if ($_POST) {
 
 
 $data['tiltle'] = 'Нова книга';;
-include './templates/header.php';
-include './templates/add_book_public.php';
-include'./templates/footer.php';
+
+render($data, './templates/add_book_public.php') ;
+
 ?>

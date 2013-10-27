@@ -26,10 +26,9 @@ while ($row = mysqli_fetch_assoc($q)) {
     $result[$row['book_id']]['authors'][$row['author_id']] = $row['author_name'];
 }
 
+$data['result'] = $result;
 $data['tiltle'] = 'Списък';
-include './templates/header.php';
-include './templates/index_public.php';
-include'./templates/footer.php';
+render($data, './templates/index_public.php')
 
 
 ?>

@@ -6,7 +6,7 @@
     <div>Автори:<br/>
         <select name="authors[]" multiple style="width: 200px">
             <?php
-            foreach ($authors as $row) {
+            foreach ($data['authors'] as $row) {
                 echo '<option value="' . $row['author_id'] . '">
                     ' . $row['author_name'] . '</option>';
             }

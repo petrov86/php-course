@@ -26,14 +26,12 @@ if ($_POST) {
         }
     }
 }
-$authors = getAuthors($db);
-if ($authors===false) {
+$data['authors'] = getAuthors($db);
+if ($data['authors'] ===false) {
     echo 'Грешка';
 }
 
 $data['tiltle'] = 'Автори';
-include './templates/header.php';
-include './templates/authors_public.php';
-include './templates/footer.php';
+render($data, './templates/authors_public.php') ;
 ?>
  

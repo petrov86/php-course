@@ -6,7 +6,7 @@
     
 <?php
 
-foreach ($result as $row) {
+foreach ($data['result'] as $row) {
     echo '<tr><td>' . $row['book_title'] . '</td>
         <td>';
     $arr = array();
